@@ -30,10 +30,10 @@ sudo dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb
 sudo apt install -f
 ```
 
-<aside>
-⚠️ If the second line have error (libssl1.1,…), need execute script below
+>
+⚠️ Nếu dòng thứ 2 bị lỗi (libssl1.1,…), cần thực thi đoạn script bên dưới
+>
 
-</aside>
 
 ```
 //xfonts-75dpi
@@ -87,10 +87,9 @@ sudo su - postgres
 psql -d postgres
 ```
 
-<aside>
+>
 ⚠️ Nếu truy cập người dùng postgres không được thì phải kiểm tra trạng thái postgresql
-
-</aside>
+>
 
 ```
 //Kiểm tra trạng thái
@@ -99,7 +98,7 @@ sudo service postgresql status
 sudo service postgresql start
 ```
 
-Create username and password with role is superuser
+Tạo username và password với role là superuser
 
 ```
 create role *odoo17* with superuser login password '*odoo17*';
@@ -120,8 +119,8 @@ sudo apt-get install git
 > **Create a folder containing odoo projects**
 > 
 
-```json
-mkdir /mnt/e/ubuntu/odoo
+```
+mkdir odoo_projects/odoo17
 ```
 
 > **Clone Odoo 17**
@@ -129,7 +128,7 @@ mkdir /mnt/e/ubuntu/odoo
 
 ```
 //Point to the newly created folder
-cd /mnt/e/ubuntu/odoo/
+cd odoo_projects/odoo17
 git clone -b 17.0 --single-branch --depth=1 https://github.com/odoo/odoo.git odoo17
 ```
 
@@ -148,7 +147,7 @@ sudo apt-get install -y python3-venv
 > 
 
 ```
-cd /mnt/e/ubuntu/odoo/odoo17
+cd odoo_projects/odoo17
 python3 -m venv odoo17env
 ```
 
@@ -163,10 +162,9 @@ source odoo17env/bin/activate
 
 ### Step 7: Run Wheel and Requirements File
 
-<aside>
+>
 ⚠️ Keep in source odoo17env/bin/activate
-
-</aside>
+>
 
 > Install wheel
 > 
@@ -182,20 +180,19 @@ pip install wheel
 python3 -m pip install -r requirements.txt
 ```
 
-<aside>
+>
 ⚠️ If have Error any module, open requirements.txt and delete that line. Then reinstall requirements.txt.
 Next reinstall faulty modules.
 OR
-Execute this script: sudo apt-get install python3-dev. Then reinstall requirements.txt
-
-</aside>
+Execute this script: **sudo apt-get install python3-dev**. Then reinstall requirements.txt
+>
 
 ---
 
 ### Step 8: **Create a directory for the 3rd party addons**
 
 ```
-cd /mnt/e/ubuntu/odoo/odoo17
+cd odoo_projects/odoo17
 mkdir custom
 ```
 
@@ -203,12 +200,12 @@ mkdir custom
 
 ### Step 9: **Create a configuration file for the Odoo Installation**
 
-> **Copy /odoo17/debian/odoo.conf file to /odoo17/odoo_conf/odoo17.conf**
+> **Copy odoo_projects/odoo17/debian/odoo.conf file to odoo_projects/odoo17/odoo_conf/odoo17.conf**
 > 
 
 ```
-sudo cp /mnt/e/ubuntu/odoo/odoo17/debian/odoo.conf /mnt/e/ubuntu/odoo/odoo17/odoo_conf/odoo17.conf
-sudo nano /mnt/e/ubuntu/odoo/odoo17/odoo_conf/odoo17.conf
+sudo cp odoo_projects/odoo17/debian/odoo.conf odoo_projects/odoo17/odoo_conf/odoo17.conf
+sudo nano odoo_projects/odoo17/odoo_conf/odoo17.conf
 ```
 
 > **Update the Conf File you have copied**
@@ -222,14 +219,14 @@ sudo nano /mnt/e/ubuntu/odoo/odoo17/odoo_conf/odoo17.conf
    db_port = False
    db_user = odoo17
    db_password = odoo17
-   addons_path = /mnt/e/ubuntu/odoo/odoo17/addons, /mnt/e/ubuntu/odoo/odoo17/custom
+   addons_path = odoo_projects/odoo17/addons, odoo_projects/odoo17/custom
 ```
 
 ---
 
 ### Step 10: Configure Postgresql
 
-```json
+```
 sudo nano /etc/postgresql/14/main/pg_hba.conf
 ```
 
@@ -242,7 +239,7 @@ sudo nano /etc/postgresql/14/main/pg_hba.conf
 
 ```
 //In odoo/odoo17/
-cd /mnt/e/ubuntu/odoo/odoo17
+cd odoo_projects/odoo17
 source odoo17env/bin/activate
-python3 odoo-bin -c odoo_conf/odoo17.conf -d odoo17db
+python3 odoo-bin -c odoo_conf/odoo17.conf
 ```
