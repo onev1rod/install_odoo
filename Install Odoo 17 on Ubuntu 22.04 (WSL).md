@@ -120,7 +120,7 @@ sudo apt-get install git
 > 
 
 ```
-mkdir odoo_projects/odoo17
+mkdir odoo_projects
 ```
 
 > **Clone Odoo 17**
@@ -128,7 +128,7 @@ mkdir odoo_projects/odoo17
 
 ```
 //Point to the newly created folder
-cd odoo_projects/odoo17
+cd odoo_projects
 git clone -b 17.0 --single-branch --depth=1 https://github.com/odoo/odoo.git odoo17
 ```
 
@@ -219,6 +219,7 @@ sudo nano odoo_projects/odoo17/odoo_conf/odoo17.conf
    db_port = False
    db_user = odoo17
    db_password = odoo17
+   http_port = 8069
    addons_path = odoo_projects/odoo17/addons, odoo_projects/odoo17/custom
 ```
 
