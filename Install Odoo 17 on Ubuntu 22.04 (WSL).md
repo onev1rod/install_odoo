@@ -199,13 +199,13 @@ mkdir custom
 ---
 
 ### Step 9: **Create a configuration file for the Odoo Installation**
-
+>**Create folder odoo_conf**
 > **Copy odoo_projects/odoo17/debian/odoo.conf file to odoo_projects/odoo17/odoo_conf/odoo17.conf**
 > 
 
 ```
-sudo cp odoo_projects/odoo17/debian/odoo.conf odoo_projects/odoo17/odoo_conf/odoo17.conf
-sudo nano odoo_projects/odoo17/odoo_conf/odoo17.conf
+sudo cp debian/odoo.conf odoo_conf/odoo17.conf
+sudo nano odoo_conf/odoo17.conf
 ```
 
 > **Update the Conf File you have copied**
@@ -220,7 +220,7 @@ sudo nano odoo_projects/odoo17/odoo_conf/odoo17.conf
    db_user = odoo17
    db_password = odoo17
    http_port = 8069
-   addons_path = odoo_projects/odoo17/addons, odoo_projects/odoo17/custom
+   addons_path = addons, custom
 ```
 
 ---
